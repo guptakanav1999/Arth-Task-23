@@ -1,0 +1,13 @@
+- hosts: master
+  roles:
+          - role: master
+- hosts: workers
+  vars_prompt:
+    - name: "master_token"
+      prompt: "Please enter token to JOIN master node : "
+      private: no
+  roles:
+          - role: slave
+- hosts: master
+  roles:
+          - role: wordpress-mysql
